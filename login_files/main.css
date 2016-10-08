@@ -1,0 +1,564 @@
+* {
+    box-sizing: border-box;
+    font-family: Open Sans, Arial, Hiragino Sans GB, 微软雅黑, 华文细黑, STHeiti, Microsoft YaHei
+}
+
+body, html {
+    height: 100%;
+    background-color: #fff;
+    margin: 0;
+    font-size: 14px
+}
+
+.vertical-center {
+    position: relative;
+    top: 50%;
+    text-align: center
+}
+
+input:focus {
+    outline: none
+}
+
+.rb-button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.loader {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 2px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid #fff;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear
+}
+
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+#rb-app, .rb-login {
+    height: 100%
+}
+
+@media (min-width: 767px) {
+    .rb-login {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+}
+
+.rb-login-body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+@media (min-width: 767px) {
+    .rb-login-body {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+@media not all and (min-width: 767px) {
+    .rb-login-body {
+        padding: 20px
+    }
+}
+
+@media (min-width: 767px) {
+    .rb-login-body {
+        height: calc(100% - 54px);
+        max-width: 326px;
+        min-height: 500px;
+        margin-top: -40px;
+    }
+}
+
+.rb-login-buttons {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 20px
+}
+
+.rb-login-buttons .login {
+    height: 45px;
+    width: 60%;
+    font-size: 24px;
+    display: inline-block;
+    text-align: center;
+    line-height: 43px;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #ee3888;
+    border: 1px solid #ee3888;
+    border-radius: 23px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.rb-login-buttons .login:hover {
+    background-color: #ea227a;
+    border: 1px solid #ea227a
+}
+
+.rb-login-buttons .login:focus, .rb-login-buttons .login:hover {
+    color: #fff
+}
+
+.rb-login-buttons .fb, .rb-login-buttons .weibo {
+    cursor: pointer;
+    display: inline-block
+}
+
+.rb-login-buttons .fb svg circle, .rb-login-buttons .login, .rb-login-buttons .weibo svg circle {
+    -webkit-transition: .2s;
+    transition: .2s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out
+}
+
+.rb-login-buttons .weibo svg:hover circle {
+    fill: #b70d22
+}
+
+.rb-login-buttons .fb svg:hover circle {
+    fill: #082cb5
+}
+
+.rb-login-link {
+    height: 22px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #ee3888;
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.rb-login-link .sent-sucess {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.rb-login-link .checked-icon {
+    padding-right: 6px;
+    height: 18px
+}
+
+.rb-login-no-account {
+    height: 22px;
+    color: rgba(0, 0, 0, .7)
+}
+
+.rb-login-no-account .sign-up {
+    color: #ee3888;
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.rb-login-footer {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 54px;
+    background-color: #f1f1f1
+}
+
+@media not all and (min-width: 767px) {
+    .rb-login-footer {
+        height: 40px;
+        position: fixed;
+        bottom: 0
+    }
+}
+
+@media (min-width: 767px) {
+    .rb-login-footer {
+        min-height: 54px
+    }
+}
+
+.rb-login-footer .lang {
+    cursor: pointer;
+    color: rgba(0, 0, 0, .4);
+    font-size: 14px;
+    padding: 0 10px
+}
+
+.rb-login-footer .lang.active {
+    color: #ee3888
+}
+
+.rb-login-header {
+    width: 100%;
+    height: 90px;
+    z-index: 9999;
+}
+
+.rb-login-header .logo-title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 60px
+}
+
+.rb-login-header .top-title {
+    font-size: 41.69px;
+    color: #393939;
+    letter-spacing: -2.45px
+}
+
+.rb-login-header #sina_logo {
+    margin-bottom: 15px
+}
+
+.rb-login-header .sub-title {
+    font-size: 18px;
+    color: #393939;
+    letter-spacing: 0;
+    text-align: center
+}
+
+.rb-login-banner {
+    display: block;
+    width: 100%;
+    min-height: 247px;
+    margin: 0px;
+    position: relative;
+}
+
+.banner-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-position: center top;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-size: 1280px;
+    position: absolute;
+    padding: 0px;
+}
+
+.banner-shape {
+    position: absolute;
+    top: 247px;
+    left: 0px;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 247px;
+    background: #fff;
+    transform-origin: left;
+    -ms-transform-origin: left;
+    -webkit-transform-origin: left;
+    -moz-transform-origin: left;
+    -o-transform-origin: left;
+    transform: skew(0deg, -5deg);
+    -ms-transform: skew(0deg, -5deg);
+    -webkit-transform: skew(0deg, -5deg);
+    -moz-transform: skew(0deg, -5deg);
+    -o-transform: skew(0deg, -5deg);
+}
+
+.blur {
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+
+
+.rb-login-banner .banner-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #fff;
+}
+
+.rb-login-banner .banner-container .banner-title {
+    font-family: OpenSans-Semibold;
+    font-size: 36px;
+    color: #fff;
+    letter-spacing: 0;
+    text-align: center;
+    padding-top: 20px
+}
+
+@media not all and (min-width: 767px) {
+    .rb-login-banner .banner-container .banner-title {
+        font-size: 20px
+    }
+}
+
+.rb-login-banner .banner-container .banner-sub-title {
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 0;
+    text-align: center
+}
+
+@media not all and (min-width: 767px) {
+    .rb-login-banner .banner-container .banner-sub-title {
+        font-size: 14px
+    }
+}
+
+.rb-login-banner .banner-container .banner-start {
+    color: #fff;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.rb-login-banner .banner-container .banner-start .start {
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    line-height: 38px;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #ee3888;
+    border: 1px solid #ee3888
+}
+
+.rb-login-banner .banner-container .banner-start .start:hover {
+    background-color: #ea227a;
+    border: 1px solid #ea227a
+}
+
+.rb-login-banner .banner-container .banner-start .start:focus, .rb-login-banner .banner-container .banner-start .start:hover {
+    color: #fff
+}
+
+@media not all and (min-width: 767px) {
+    .rb-login-banner .banner-container .banner-start .start {
+        height: 30px;
+        width: 80px;
+        font-size: 12px;
+        display: inline-block;
+        text-align: center;
+        line-height: 28px;
+        cursor: pointer;
+        border-radius: 2px;
+        color: #fff;
+        background-color: #ee3888;
+        border: 1px solid #ee3888
+    }
+
+    .rb-login-banner .banner-container .banner-start .start:hover {
+        background-color: #ea227a;
+        border: 1px solid #ea227a
+    }
+
+    .rb-login-banner .banner-container .banner-start .start:focus, .rb-login-banner .banner-container .banner-start .start:hover {
+        color: #fff
+    }
+
+    .rb-login-banner .banner-container .banner-start .start .loader {
+        width: 24px;
+        height: 24px
+    }
+}
+
+
+@media (max-width: 767px) {
+    .rb-login-banner {
+        min-height: 152px;
+    }
+    .banner-shape {
+        top: 152px;
+        height: 152px;
+    }
+    .banner-img {
+        background-position-x: 65%;
+        background-position-y: 100%;
+        background-size: cover
+    }
+}
+
+@media (min-width: 1281px) {
+    .banner-img {
+        background-position-x: 100%;
+        background-position-y: 75%;
+        background-size: cover
+    }
+}
+
+@media (min-width: 1921px) {
+    .banner-img {
+        background-position-x: 100%;
+        background-position-y: 75%;
+        background-size: cover
+    }
+    .banner-shape {
+        margin-top: -90px;
+        transform: skew(0deg, -3deg);
+        -ms-transform: skew(0deg, -3deg);
+        -webkit-transform: skew(0deg, -3deg);
+        -moz-transform: skew(0deg, -3deg);
+        -o-transform: skew(0deg, -3deg)
+    }
+}
+
+.rb-login-email-pass {
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 20px
+}
+
+.rb-login-email-pass .input-layout {
+    position: relative;
+    margin-top: 25px;
+    height: 60px
+}
+
+.rb-login-email-pass input {
+    font-weight: 400;
+    font-size: 16px;
+    color: #1e2431;
+    border: 0;
+    width: 100%;
+    height: 36px;
+    padding: 1px 0 0 2px;
+    border-bottom: 1px solid #dadee6;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 9px
+}
+
+.rb-login-email-pass label {
+    color: rgba(0, 0, 0, .4);
+    font-size: 16px;
+    letter-spacing: .5px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    pointer-events: none;
+    -webkit-transition: all .2s ease 0s;
+    transition: all .2s ease 0s
+}
+
+.rb-login-email-pass .input-layout input:-webkit-autofill ~ label {
+    top: -20px;
+    font-size: 12px
+}
+
+.rb-login-email-pass .input-layout input:focus ~ label, .rb-login-email-pass .input-layout input:valid ~ label {
+    top: -20px;
+    font-size: 12px
+}
+
+.rb-login-email-pass .input-layout input.invalid {
+    border-bottom-color: #e3102a
+}
+
+.rb-login-email-pass .error {
+    font-size: 12px;
+    color: #e3102a;
+    font-style: italic
+}

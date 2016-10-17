@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+</head>
+<body>
+
+<div data-add-back-btn="true" data-role="page" id='active-chat'>
+
+    <script>
+        var default_user_thumb 	= "d43f34a7d8b18e39cc3da7d624533252.jpg";
+        var profileId			= 1;
+        var chatId				= 1;
+        var message 			= "";
+
+        function emitChatMessage(el, i) {
+            var data = i + " : This is a message example...";
+            el.append("<li class='wsn'><img class='thumb' src='/uploads/thumbs/"+ default_user_thumb +"' title='User "+ profileId +"'/>"+ data +"</li>");
+        }
+
+        function scrollBottom() {
+            var bottom = $("#bottom");
+            $('html,body').animate({ scrollTop: bottom.offset().top });
+        }
+
+        function sendMessage() {
+            message = $("#message-data").val();
+            $("#message-data").val("");
+            $("#message-data").focus();
+            var el = $("#conversation");
+            emitChatMessage(el, message);
+            scrollBottom();
+        }
+
+        $(document).delegate("#active-chat", "pageinit", function() {
+
+            $("#active-chat-name").html(" "+ chatId);
+
+            var el = $("#conversation");
+            el.html('');
+
+            for(i = 0; i < 50 ; i ++) {
+                emitChatMessage(el, i);
+            }
+
+            el.listview();
+            el.listview('refresh');
+
+            $('#message-data').keypress(function(e) { if(e.which == 13) { sendMessage(); return false; } });
+
+        });
+
+        $(document).delegate("#active-chat", "pageshow", function() {
+            scrollBottom();
+        });
+
+    </script>
+
+    <div data-role="header" data-position='fixed'  data-tap-toggle="false">
+        <h1>CHAT<span id='active-chat-name'></span></h1>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content" id='chat-content'>
+
+        <ul data-role="listview" id="conversation"></ul>
+        <A HREF='#' id='bottom'></A>
+
+    </div>
+
+    <div data-role="footer" data-position='fixed' data-tap-toggle="false">
+
+        <table width='100%'>
+            <tr>
+                <td>
+                    <textarea rows='1' name="message-data" id="message-data"></textarea>
+                </td>
+                <td>
+                    <div id="chatpic-upload-container">
+                        <a id='datasend' data-inline='true' title="Send Message" onclick="sendMessage();" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-notext">chat</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

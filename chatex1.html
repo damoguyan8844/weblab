@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://localhost:9098/chatex/index.html#/UserMessages -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }</style>
+
+    <title>Ionic Elastichat</title>
+
+
+    <link rel="stylesheet" href="./chatex1_files/style.css">
+
+
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+
+<body ng-app="elastichat" class="grade-a platform-browser platform-ios platform-ios9 platform-ios9_1 platform-ready">
+
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<title>Ionic Elastichat</title>
+<link href="./chatex1_files/ionic.css" rel="stylesheet">
+<script src="./chatex1_files/ionic.bundle.js"></script>
+<!-- moment -->
+<script src="./chatex1_files/moment.js"></script>
+<!-- angular moment -->
+<script src="./chatex1_files/angular-moment.js"></script>
+
+
+<ion-nav-bar class="bar-positive nav-bar-container" no-tap-scroll="false" nav-bar-transition="ios"
+             nav-bar-direction="none">
+    <ion-nav-back-button class="hide"></ion-nav-back-button>
+    <div class="nav-bar-block" nav-bar="cached">
+        <ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center"
+                        no-tap-scroll="false">
+            <button class="button back-button hide buttons button-icon ion-arrow-left-c header-item"
+                    ng-click="$ionicGoBack($event)">
+                <span class="back-text"><span class="default-title">Back</span><span class="previous-title hide"></span></span>
+            </button>
+            <div class="title title-center header-item"></div>
+        </ion-header-bar>
+    </div>
+    <div class="nav-bar-block" nav-bar="active">
+        <ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center"
+                        no-tap-scroll="false">
+            <button class="button back-button hide buttons button-icon ion-arrow-left-c header-item"
+                    ng-click="$ionicGoBack($event)">
+                <span class="back-text" style="transform: translate3d(0px, 0px, 0px);"><span
+                        class="default-title">Back</span><span class="previous-title hide">undefined</span></span>
+            </button>
+            <div class="title title-center header-item" style="transform: translate3d(0px, 0px, 0px);"><i
+                    class="icon ion-chatbubble user-messages-top-icon"></i>
+
+                <div class="msg-header-username">Venkman</div>
+            </div>
+        </ion-header-bar>
+    </div>
+</ion-nav-bar>
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+  -->
+<ion-nav-view class="view-container" nav-view-transition="ios" nav-view-direction="none">
+    <ion-view id="userMessagesView" cache-view="false"
+              view-title="&lt;i class=&#39;icon ion-chatbubble user-messages-top-icon&#39;&gt;&lt;/i&gt; &lt;div class=&#39;msg-header-username&#39;&gt;Venkman&lt;/div&gt;"
+              class="pane" nav-view="active" style="opacity: 1; transform: translate3d(0%, 0px, 0px);">
+
+        <!-- ngIf: !doneLoading -->
+
+        <ion-content has-bouncing="true" class="scroll-content ionic-scroll  has-header has-footer"
+                     delegate-handle="userMessageScroll">
+            <div class="scroll" style="transform: translate3d(0px, -510px, 0px) scale(1);">
+
+                <!-- ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+                    <div ng-if="user._id === message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic right"
+                             ng-src="http://ionicframework.com/img/docs/mcfly.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/mcfly.jpg">
+
+                        <div class="chat-bubble right">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Ionic has
+                                changed the game for hybrid app development.
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Marty</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+                    <div ng-if="user._id !== message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic left"
+                             ng-src="http://ionicframework.com/img/docs/venkman.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/venkman.jpg">
+
+                        <div class="chat-bubble left">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">I like
+                                Ionic better than ice cream!
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Venkman</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+                    <div ng-if="user._id === message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic right"
+                             ng-src="http://ionicframework.com/img/docs/mcfly.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/mcfly.jpg">
+
+                        <div class="chat-bubble right">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Lorem
+                                ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Marty</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+                    <div ng-if="user._id !== message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic left"
+                             ng-src="http://ionicframework.com/img/docs/venkman.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/venkman.jpg">
+
+                        <div class="chat-bubble left">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Am I
+                                dreaming?
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Venkman</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+                    <div ng-if="user._id === message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic right"
+                             ng-src="http://ionicframework.com/img/docs/mcfly.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/mcfly.jpg">
+
+                        <div class="chat-bubble right">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Is this
+                                magic?
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Marty</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+                    <div ng-if="user._id !== message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic left"
+                             ng-src="http://ionicframework.com/img/docs/venkman.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/venkman.jpg">
+
+                        <div class="chat-bubble left">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Gee wiz,
+                                this is something special.
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Venkman</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+                    <div ng-if="user._id === message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic right"
+                             ng-src="http://ionicframework.com/img/docs/mcfly.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/mcfly.jpg">
+
+                        <div class="chat-bubble right">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">I think I
+                                like Ionic more than I like ice cream!
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Marty</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+                    <div ng-if="user._id !== message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic left"
+                             ng-src="http://ionicframework.com/img/docs/venkman.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/venkman.jpg">
+
+                        <div class="chat-bubble left">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Yea, it's
+                                pretty sweet
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Venkman</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+                    <div ng-if="user._id === message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic right"
+                             ng-src="http://ionicframework.com/img/docs/mcfly.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/mcfly.jpg">
+
+                        <div class="chat-bubble right">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Wow, this
+                                is really something huh?
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Marty</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+                <div ng-repeat="message in messages" class="message-wrapper disable-user-behavior"
+                     on-hold="onMessageHold($event, $index, message)">
+
+                    <!-- ngIf: user._id !== message.userId -->
+                    <div ng-if="user._id !== message.userId" class="">
+
+                        <img ng-click="viewProfile(message)" class="profile-pic left"
+                             ng-src="http://ionicframework.com/img/docs/venkman.jpg" onerror="onProfilePicError(this)"
+                             src="./chatex1_files/venkman.jpg">
+
+                        <div class="chat-bubble left">
+
+                            <div class="message ng-binding" ng-bind-html="message.text | nl2br" autolinker="">Create
+                                amazing apps - <a href="http://ionicframework.com/" class="autolinker autolinker-url">ionicframework.com</a>
+                            </div>
+
+                            <div class="message-detail">
+                                <span ng-click="viewProfile(message)" class="bold ng-binding">Venkman</span>,
+                                <span am-time-ago="message.date">2 years ago</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end ngIf: user._id !== message.userId -->
+
+                    <!-- ngIf: user._id === message.userId -->
+
+                    <div class="cf"></div>
+
+                </div>
+                <!-- end ngRepeat: message in messages -->
+            </div>
+            <div class="scroll-bar scroll-bar-v">
+                <div class="scroll-bar-indicator scroll-bar-fade-out"
+                     style="transform: translate3d(0px, 271px, 0px) scaleY(1); height: 309px;"></div>
+            </div>
+        </ion-content>
+
+        <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate=""
+              class="ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength">
+            <ion-footer-bar class="bar-stable item-input-inset message-footer bar bar-footer" keyboard-attach="">
+                <label class="item-input-wrapper">
+                    <textarea ng-model="input.message" value="" placeholder="Send Venkman a message..." required=""
+                              minlength="1" maxlength="1500" msd-elastic=""
+                              class="ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength"
+                              style="overflow: hidden; word-wrap: break-word; resize: none; height: 20px;"></textarea>
+                </label>
+
+                <div class="footer-btn-wrap">
+                    <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                            ng-disabled="!input.message || input.message === &#39;&#39;" disabled="disabled">
+                    </button>
+                </div>
+            </ion-footer-bar>
+        </form>
+
+    </ion-view>
+</ion-nav-view>
+<script id="templates/UserMessages.html" type="text/ng-template">
+    <ion-view id="userMessagesView"
+              cache-view="false"
+              view-title="<i class='icon ion-chatbubble user-messages-top-icon'></i> <div class='msg-header-username'>{{toUser.username}}</div>">
+
+        <div class="loader-center" ng-if="!doneLoading">
+            <div class="loader">
+                <i class="icon ion-loading-c"></i>
+            </div>
+        </div>
+
+        <ion-content has-bouncing="true" class="has-header has-footer"
+                     delegate-handle="userMessageScroll">
+
+            <div ng-repeat="message in messages" class="message-wrapper"
+                 on-hold="onMessageHold($event, $index, message)">
+
+                <div ng-if="user._id !== message.userId">
+
+                    <img ng-click="viewProfile(message)" class="profile-pic left"
+                         ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)"/>
+
+                    <div class="chat-bubble left">
+
+                        <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                        </div>
+
+                        <div class="message-detail">
+                              <span ng-click="viewProfile(message)"
+                                    class="bold">{{toUser.username}}</span>,
+                            <span am-time-ago="message.date"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div ng-if="user._id === message.userId">
+
+                    <img ng-click="viewProfile(message)" class="profile-pic right"
+                         ng-src="{{user.pic}}" onerror="onProfilePicError(this)"/>
+
+                    <div class="chat-bubble right">
+
+                        <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                        </div>
+
+                        <div class="message-detail">
+                              <span ng-click="viewProfile(message)"
+                                    class="bold">{{user.username}}</span>,
+                            <span am-time-ago="message.date"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="cf"></div>
+
+            </div>
+        </ion-content>
+
+        <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
+            <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+                <label class="item-input-wrapper">
+                    <textarea ng-model="input.message" value="" placeholder="Send {{toUser.username}} a message..."
+                              required minlength="1" maxlength="1500" msd-elastic></textarea>
+                </label>
+
+                <div class="footer-btn-wrap">
+                    <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                            ng-disabled="!input.message || input.message === ''">
+                    </button>
+                </div>
+            </ion-footer-bar>
+        </form>
+
+    </ion-view>
+</script>
+
+
+<script src="./chatex1_files/jquery.min.js"></script>
+<script src="./chatex1_files/index.js"></script>
+
+
+<div class="backdrop"></div>
+<textarea tabindex="-1"
+          style="position: absolute; top: -999px; right: auto; bottom: auto; left: 0px; overflow: hidden; box-sizing: content-box; padding: 0px; word-wrap: break-word; border: 0px; font-family: &quot;Helvetica Neue&quot;, Roboto, sans-serif; font-size: 14px; font-weight: normal; font-style: normal; letter-spacing: normal; line-height: 16px; text-transform: none; word-spacing: 0px; text-indent: 0px; min-height: 0px !important; height: 0px !important; width: 285px;"></textarea>
+</body>
+</html>
